@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бот-Магнат</title>
+    <!-- Подключаем Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #1c1c1c; color: white; padding-top: 50px; }
+        #clicker { width: 150px; height: 150px; background: #ffd700; border-radius: 50%; border: none; cursor: pointer; font-size: 20px; font-weight: bold; }
+        #score { font-size: 2em; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Магнат</h1>
+    <div id="score">0</div>
+    <button id="clicker">ТЫК!</button>
+
+    <script>
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+        const clicker = document.getElementById('clicker');
+
+        // Инициализация Telegram WebApp
+        window.Telegram.WebApp.ready();
+
+        clicker.addEventListener('click', () => {
+            score++;
+            scoreDisplay.innerText = score;
+            // Вибрация (фишка Telegram)
+            window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        });
+    </script>
+</body>
+</html>
